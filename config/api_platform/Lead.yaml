@@ -1,0 +1,25 @@
+resources:
+    App\Domain\Lead\Lead:
+        shortName: Lead
+        properties:
+            consents:
+                writableLink: true
+        operations:
+            ApiPlatform\Metadata\GetCollection:
+                security: "is_granted('ROLE_ADMIN') or (request and request.server.get('APP_ENV') == 'dev')"
+            ApiPlatform\Metadata\Get:
+                security: "is_granted('ROLE_ADMIN') or (request and request.server.get('APP_ENV') == 'dev')"
+                normalizationContext:
+                    groups:
+                        - lead:read
+                        - consent:embedded:read
+                        - campaign:embedded:read
+            ApiPlatform\Metadata\Post:
+                denormalizationContext:
+                    groups:
+                        - lead:write
+                        - consent:write
+                processor: App\Application\Lead\State\CreateLeadProcessor
+            ApiPlatform\Metadata\Delete:
+                security: "is_granted('ROLE_ADMIN') or (request and request.server.get('APP_ENV') == 'dev')"
+                processor: App\Application\Lead\State\DeleteLeadProcessor

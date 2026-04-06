@@ -1,0 +1,44 @@
+App\Domain\Lead\Lead:
+    properties:
+        email:
+            - NotBlank: ~
+            - Email: ~
+        firstName:
+            - NotBlank: ~
+            - Length:
+                  min: 1
+                  max: 255
+        lastName:
+            - NotBlank: ~
+            - Length:
+                  min: 1
+                  max: 255
+        campaign:
+            - NotNull: ~
+        consents:
+            - Count:
+                  min: 1
+                  minMessage: 'At least one consent is required.'
+            - Valid: ~
+
+App\Domain\Lead\Consent:
+    properties:
+        scope:
+            - NotBlank: ~
+            - Length:
+                  min: 2
+                  max: 100
+        policyVersion:
+            - NotBlank: ~
+            - Length:
+                  min: 1
+                  max: 50
+        givenAt:
+            - NotNull: ~
+        source:
+            - NotBlank: ~
+            - Length:
+                  min: 1
+                  max: 100
+        ipAddress:
+            - Ip: ~

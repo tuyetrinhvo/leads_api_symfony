@@ -1,0 +1,24 @@
+App\Domain\Lead\Lead:
+    attributes:
+        id:
+            groups: [ 'lead:read' ]
+        email:
+            groups: [ 'lead:read', 'lead:write' ]
+        firstName:
+            groups: [ 'lead:read', 'lead:write' ]
+        lastName:
+            groups: [ 'lead:read', 'lead:write' ]
+        attributes:
+            groups: [ 'lead:read', 'lead:write' ]
+        status:
+            groups: [ 'lead:read' ]
+        createdAt:
+            groups: [ 'lead:read' ]
+        exportedAt:
+            groups: [ 'lead:read' ]
+        deletedAt:
+            groups: [ 'lead:read' ]
+        campaign:
+            groups: [ 'lead:read', 'lead:write' ]
+        consents:
+            groups: [ 'lead:read', 'lead:write' ]

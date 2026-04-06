@@ -1,0 +1,26 @@
+security:
+    providers:
+        api_jwt:
+            lexik_jwt:
+                class: App\Security\User
+
+    role_hierarchy:
+        ROLE_API_ACCESS: [ ROLE_ADMIN, ROLE_USER ]
+
+    firewalls:
+        dev:
+            # Ensure dev tools and static assets are always allowed
+            pattern: ^/(_profiler|_wdt|assets|build)/
+            security: false
+        api:
+            pattern: ^/api
+            stateless: true
+            provider: api_jwt
+            jwt: ~
+
+    # Note: Only the *first* matching rule is applied
+    access_control:
+        - { path: ^/api/docs, roles: PUBLIC_ACCESS }
+        - { path: ^/docs, roles: PUBLIC_ACCESS }
+        - { path: ^/api/leads$, methods: [POST], roles: PUBLIC_ACCESS }
+        - { path: ^/api, roles: IS_AUTHENTICATED_FULLY, allow_if: "request.server.get('APP_ENV') == 'dev'" }

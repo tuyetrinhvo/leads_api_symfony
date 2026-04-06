@@ -1,0 +1,12 @@
+resources:
+    App\Domain\Lead\Consent:
+        shortName: Consent
+        operations:
+            ApiPlatform\Metadata\GetCollection:
+                security: "is_granted('ROLE_ADMIN') or (request and request.server.get('APP_ENV') == 'dev')"
+            ApiPlatform\Metadata\Get:
+                security: "is_granted('ROLE_ADMIN') or (request and request.server.get('APP_ENV') == 'dev')"
+            ApiPlatform\Metadata\Post:
+                security: "is_granted('ROLE_ADMIN') or (request and request.server.get('APP_ENV') == 'dev')"
+            ApiPlatform\Metadata\Delete:
+                security: "is_granted('ROLE_ADMIN') or (request and request.server.get('APP_ENV') == 'dev')"

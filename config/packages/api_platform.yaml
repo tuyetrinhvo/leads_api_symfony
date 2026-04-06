@@ -1,0 +1,32 @@
+api_platform:
+    title: API Leads
+    description: "API Symfony 8 / PHP 8.5"
+    version: 1.0.0
+
+    graphql:
+        enabled: true
+
+    mapping:
+        paths:
+            - '%kernel.project_dir%/config/api_platform'
+
+    defaults:
+        pagination_client_items_per_page: true
+        pagination_enabled: true
+        stateless: true # No Symfony session, pure REST API
+        cache_headers: # Tell caches which headers affect responses
+            vary: ['Content-Type', 'Authorization', 'Origin']
+        formats:
+            jsonld: [ 'application/ld+json' ]
+            json: [ 'application/json' ]
+
+    swagger:
+        versions: [ "3" ]
+
+    formats:
+        json: [ 'application/json' ] # Default API response format
+        jsonld: [ 'application/ld+json' ] # JSON-LD for API Platform clients
+        html: [ 'text/html' ]  # Swagger UI support
+        yaml: [ 'application/x-yaml' ] # Optional YAML support
+
+    enable_profiler: '%kernel.debug%' # Enable Symfony profiler in dev

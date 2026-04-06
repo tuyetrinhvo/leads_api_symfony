@@ -1,0 +1,47 @@
+App\Application\Lead\Input\CreateLeadInput:
+    properties:
+        email:
+            - NotBlank: ~
+            - Email: ~
+        firstName:
+            - NotBlank: ~
+            - Length:
+                  min: 1
+                  max: 255
+        lastName:
+            - NotBlank: ~
+            - Length:
+                  min: 1
+                  max: 255
+        attributes:
+            - NotNull: ~
+            - Type:
+                  type: array
+        campaign:
+            - NotNull: ~
+            - Positive: ~
+        consent:
+            - NotNull: ~
+            - Valid: ~
+
+App\Application\Lead\Input\CreateLeadConsentInput:
+    properties:
+        scope:
+            - NotBlank: ~
+            - Length:
+                  min: 2
+                  max: 100
+        policyVersion:
+            - NotBlank: ~
+            - Length:
+                  min: 1
+                  max: 50
+        givenAt:
+            - NotBlank: ~
+        source:
+            - NotBlank: ~
+            - Length:
+                  min: 1
+                  max: 100
+        ipAddress:
+            - Ip: ~

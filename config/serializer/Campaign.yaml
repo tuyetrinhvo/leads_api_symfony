@@ -1,0 +1,12 @@
+App\Domain\Lead\Campaign:
+    attributes:
+        id:
+            groups: [ 'campaign:embedded:read' ]
+        name:
+            groups: [ 'campaign:embedded:read' ]
+        partner:
+            groups: [ 'campaign:embedded:read' ]
+        startsAt:
+            groups: [ 'campaign:embedded:read' ]
+        endsAt:
+            groups: [ 'campaign:embedded:read' ]

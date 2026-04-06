@@ -1,0 +1,14 @@
+App\Domain\Lead\Consent:
+    attributes:
+        id:
+            groups: [ 'consent:embedded:read' ]
+        scope:
+            groups: [ 'consent:embedded:read', 'consent:write' ]
+        policyVersion:
+            groups: [ 'consent:embedded:read', 'consent:write' ]
+        givenAt:
+            groups: [ 'consent:embedded:read', 'consent:write' ]
+        source:
+            groups: [ 'consent:embedded:read', 'consent:write' ]
+        ipAddress:
+            groups: [ 'consent:embedded:read', 'consent:write' ]

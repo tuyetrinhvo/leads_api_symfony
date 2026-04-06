@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
+>
+    <entity name="App\Domain\Lead\Lead" table="leads">
+        <indexes>
+            <index name="lead_email_campaign_created_idx" columns="email,campaign_id,created_at"/>
+        </indexes>
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="email" type="string" length="180"/>
+        <field name="firstName" type="string" length="255"/>
+        <field name="lastName" type="string" length="255"/>
+        <field name="attributes" type="json"/>
+        <field name="status" type="string" length="20" enum-type="App\Domain\Lead\LeadStatus"/>
+        <field name="exportedAt" type="datetime_immutable" nullable="true"/>
+        <field name="createdAt" type="datetime_immutable"/>
+        <field name="deletedAt" type="datetime_immutable" nullable="true"/>
+
+        <many-to-one field="campaign" target-entity="App\Domain\Lead\Campaign" inversed-by="leads">
+            <join-column name="campaign_id" referenced-column-name="id" nullable="true" on-delete="SET NULL"/>
+        </many-to-one>
+
+        <one-to-many field="consents" target-entity="App\Domain\Lead\Consent" mapped-by="lead" orphan-removal="true">
+            <cascade>
+                <cascade-persist/>
+                <cascade-remove/>
+            </cascade>
+        </one-to-many>
+    </entity>
+</doctrine-mapping>
